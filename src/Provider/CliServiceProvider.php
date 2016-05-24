@@ -5,7 +5,6 @@ namespace Tilex\Provider;
 use Pimple\ServiceProviderInterface;
 use Pimple\Container;
 use Tilex\Console\Application;
-use Tilex\Console\Command\HttpCommand;
 
 class CliServiceProvider implements ServiceProviderInterface
 {
@@ -13,8 +12,7 @@ class CliServiceProvider implements ServiceProviderInterface
     {
         $app['cli'] = function ($app) {
             $cli = new Application($app['app.name'], $app['app.version']);
-            $cli->setTilex($app);
-            $cli->add(new HttpCommand());
+            $cli->setContainer($app);
             return $cli;
         };
     }

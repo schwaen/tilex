@@ -6,24 +6,24 @@ use Symfony\Component\Console\Application as ConsoleApplication;
 class Application extends ConsoleApplication
 {
     /**
-     * @var \Tilex\Application
+     * @var \Pimple\Container
      */
-    protected $tilex = null;
+    protected $container = null;
 
     /**
-     * setTilex
-     * @param \Tilex\Application $app
+     * setContainer
+     * @param \Pimple\Container $container
      */
-    public function setTilex(\Tilex\Application $app)
+    public function setContainer(\Pimple\Container $container)
     {
-        $this->tilex = $app;
+        $this->container = $container;
     }
 
     /**
-     * @return \Tilex\Application
+     * @return \Pimple\Container
      */
-    public function getTilex()
+    public function getContainer()
     {
-        return $this->tilex;
+        return $this->container;
     }
 }

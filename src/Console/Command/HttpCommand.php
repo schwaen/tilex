@@ -26,7 +26,7 @@ class HttpCommand extends Command
         $method = $input->getArgument('method');
         $request = Request::create($uri, $method);
 
-        $app = $this->getApplication()->getTilex();
+        $app = $this->getApplication()->getContainer();
         /* @var $app \Tilex\Application */
         $res = $app->handle($request, HttpKernelInterface::SUB_REQUEST);
 
