@@ -32,10 +32,10 @@ class Application extends \Silex\Application
     public function run(Request $request = null)
     {
         if ($this->isCli()) {
-          /* @var $this['cli'] \Tilex\Console\Application */
-          $this['cli']->run();
+            /* @var $this['cli'] \Tilex\Console\Application */
+            $this['cli']->run();
         } else {
-          parent::run($request);
+            parent::run($request);
         }
     }
 }
