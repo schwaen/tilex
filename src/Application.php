@@ -2,7 +2,6 @@
 namespace Tilex;
 
 use Tilex\Provider\CliServiceProvider;
-use Tilex\Console\Command\HttpCommand;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Console\Command\Command;
 

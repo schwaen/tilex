@@ -14,7 +14,7 @@ class HttpCommand extends Command
     {
         $this
             ->setName('call:route')
-            ->setDescription('Calls a internal http route')
+            ->setDescription('Calls an internal http route')
             ->addArgument('uri',InputArgument::REQUIRED)
             ->addArgument('method', InputArgument::OPTIONAL, '', 'GET')
         ;
@@ -28,7 +28,7 @@ class HttpCommand extends Command
 
         $app = $this->getApplication()->getTilex();
         /* @var $app \Tilex\Application */
-        $res = $app->handle($request,HttpKernelInterface::SUB_REQUEST);
+        $res = $app->handle($request, HttpKernelInterface::SUB_REQUEST);
 
         if ($res->isOk()) {
             $output->writeln($res->getContent());
