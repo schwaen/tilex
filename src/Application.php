@@ -1,10 +1,12 @@
 <?php
 namespace Tilex;
 
+use Tilex\Provider\AnnotationServiceProvider;
 use Tilex\Provider\CliServiceProvider;
 use Tilex\Console\Command\HttpCommand;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Console\Command\Command;
+
 
 class Application extends \Silex\Application
 {
@@ -17,6 +19,7 @@ class Application extends \Silex\Application
 
         $this->register(new CliServiceProvider());
         $this->cli(new HttpCommand());
+        $this->register(new AnnotationServiceProvider());
     }
 
     public function cli(Command $command)
