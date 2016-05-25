@@ -42,3 +42,4 @@ class Application extends \Silex\Application
         }
     }
 }
+
