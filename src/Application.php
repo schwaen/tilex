@@ -13,7 +13,7 @@ class Application extends \Silex\Application
         parent::__construct($values);
 
         $this['app.name'] = 'Tilex';
-        $this['app.version'] = '1.0.0';
+        $this['app.version'] = '0.1.0-dev';
 
         $this->register(new CliServiceProvider());
         $this->cli(new HttpCommand());
