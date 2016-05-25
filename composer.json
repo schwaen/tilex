@@ -1,7 +1,7 @@
 {
-    "name": "schwaen/tilex",
+    "name": "tilex/tilex",
     "description": "on top framework for silex",
-    "version": "1.0.0-dev",
+    "version": "0.1.0-dev",
     "type": "library",
     "license": "MIT",
     "authors": [
