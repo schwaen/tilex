@@ -17,8 +17,27 @@ class Route implements AnnotationMethodProcessInterface
     /** @var string */
     public $uri;
     
+    /** @var bool */
+    public $requireHttp;
+    
+    /** @var bool */
+    public $requireHttps;
+    
+    public function ___construct(array $values)
+    {
+        echo'<pre>';
+        print_r($values);
+    }
+    
     public function process(Application $app, \ReflectionMethod $method, array $class_annotations = [])
     {
+        /** @var \Silex\Controller */
         $controller = $app->match($this->uri, $method->class.'::'.$method->name)->method($this->method);
+        if ($this->requireHttp) {
+            $controller->requireHttp();
+        }
+        if ($this->requireHttps) {
+            $controller->requireHttps();
+        }
     }
 }
