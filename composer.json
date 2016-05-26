@@ -18,7 +18,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Tilex\\": "src/"
+            "Tilex\\": "src/",
+            "Controller\\": "Controller/"
         },
         "exclude-from-classmap": [
             "tests/"

@@ -2,18 +2,32 @@
 namespace Controller;
 
 /**
- * @Tilex\Annotation\Annotations\Controller(prefix="/test")
  */
 class Huch
 {
     /**
      * @Tilex\Annotation\Annotations\Route\Route(
      *     method="GET",
-     *     uri="/hello/world"
+     *     uri="/hello/{name}"
      * )
      */
-    public function foo()
+    public function moooooo($name)
     {
-        return 'MUUH';
+        return __METHOD__.' '.$name;
+    }
+
+    /**
+     * @Tilex\Annotation\Annotations\Route\Route(
+     *     method="GET",
+     *     uri="/rand"
+     * )
+     * @Tilex\Annotation\Annotations\Route\Route(
+     *     method="GET",
+     *     uri="/rand2"
+     * )
+     */
+    public function rand()
+    {
+        return rand(0,100);
     }
 }
