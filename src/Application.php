@@ -12,6 +12,12 @@ class Application extends \Silex\Application
 {
     public function __construct(array $values = array())
     {
+        $services = [];
+        if (isset($values['servies']) && is_array($values['servies'])) {
+            $services = $values['servies'];
+            unset($values['servies']);
+        }
+
         parent::__construct($values);
 
         $this['app.name'] = 'Tilex';
@@ -19,7 +25,9 @@ class Application extends \Silex\Application
 
         $this->register(new CliServiceProvider());
         $this->cli(new HttpCommand());
-        $this->register(new AnnotationServiceProvider());
+        foreach ($services as $service => $services_values) {
+            $this->register(new $service(), $services_values);
+        }
     }
 
     public function cli(Command $command)
