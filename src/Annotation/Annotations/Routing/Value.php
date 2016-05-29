@@ -1,5 +1,5 @@
 <?php
-namespace Tilex\Annotation\Annotations\Route;
+namespace Tilex\Annotation\Annotations\Routing;
 
 /**
  * @Annotation
@@ -9,7 +9,7 @@ class Value
 {
     /** @var string */
     public $variable;
-    
+
     /** @var string */
     public $value;
 }

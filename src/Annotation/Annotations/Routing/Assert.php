@@ -1,15 +1,15 @@
 <?php
-namespace Tilex\Annotation\Annotations\Route;
+namespace Tilex\Annotation\Annotations\Routing;
 
 /**
  * @Annotation
  * @Target({"ANNOTATION"})
  */
-class Convert
+class Assert
 {
     /** @var string */
     public $variable;
-    
+
     /** @var string */
-    public $callback;
+    public $regex;
 }

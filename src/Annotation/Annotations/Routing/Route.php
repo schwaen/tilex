@@ -1,10 +1,10 @@
 <?php
-namespace Tilex\Annotation\Annotations\Route;
+namespace Tilex\Annotation\Annotations\Routing;
 
 use Tilex\Annotation\AnnotationMethodProcessInterface;
-use Tilex\Annotation\Annotations\Route\Assert;
-use Tilex\Annotation\Annotations\Route\Convert;
-use Tilex\Annotation\Annotations\Route\Value;
+use Tilex\Annotation\Annotations\Routing\Assert;
+use Tilex\Annotation\Annotations\Routing\Convert;
+use Tilex\Annotation\Annotations\Routing\Value;
 use Silex\Application;
 
 /**
@@ -18,25 +18,25 @@ class Route implements AnnotationMethodProcessInterface
 
     /** @var string */
     public $uri;
-    
+
     /** @var string */
     public $bind;
-    
+
     /** @var bool */
     public $requireHttp;
-    
+
     /** @var bool */
     public $requireHttps;
-    
-    /** @var Tilex\Annotation\Annotations\Route\Assert[] */
+
+    /** @var Tilex\Annotation\Annotations\Routing\Assert[] */
     public $asserts=[];
-    
-    /** @var Tilex\Annotation\Annotations\Route\Convert[] */
+
+    /** @var Tilex\Annotation\Annotations\Routing\Convert[] */
     public $converter=[];
-    
-    /** @var Tilex\Annotation\Annotations\Route\Value[] */
+
+    /** @var Tilex\Annotation\Annotations\Routing\Value[] */
     public $values=[];
-    
+
     public function __construct(array $values)
     {
         foreach ($values as $key => $value) {
@@ -55,7 +55,7 @@ class Route implements AnnotationMethodProcessInterface
             }
         }
     }
-    
+
     public function process(Application $app, \ReflectionMethod $method, array $class_annotations = [])
     {
         /** @var \Silex\Controller */

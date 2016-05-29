@@ -6,7 +6,7 @@ namespace Controller;
 class Huch
 {
     /**
-     * @Tilex\Annotation\Annotations\Route\Route(
+     * @Tilex\Annotation\Annotations\Routing\Route(
      *     method="GET",
      *     uri="/hello/{name}"
      * )
@@ -17,11 +17,11 @@ class Huch
     }
 
     /**
-     * @Tilex\Annotation\Annotations\Route\Route(
+     * @Tilex\Annotation\Annotations\Routing\Route(
      *     method="GET",
      *     uri="/rand"
      * )
-     * @Tilex\Annotation\Annotations\Route\Route(
+     * @Tilex\Annotation\Annotations\Routing\Route(
      *     method="GET",
      *     uri="/rand2"
      * )

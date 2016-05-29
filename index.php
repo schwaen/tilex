@@ -3,6 +3,7 @@ ini_set('display_errors', 'on');
 require __DIR__ . '/vendor/autoload.php';
 
 $app = new \Tilex\Application([
+    'app.name' => 'MUUH',
     'servies' => [
         'Tilex\\Provider\\AnnotationServiceProvider' => [
             'annotation.dirs' => [__DIR__.'/Controller']

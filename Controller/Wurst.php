@@ -1,7 +1,7 @@
 <?php
 namespace Controller;
 
-use Tilex\Annotation\Annotations\Route as AR;
+use Tilex\Annotation\Annotations\Routing as AR;
 
 /**
  */
@@ -19,12 +19,12 @@ class Wurst
      *     @AR\Value(variable="max", value="150"),
      * )
      */
-    public function rand($min, $max) 
+    public function rand($min, $max)
     {
         var_dump($min, $max);
         return rand($min,$max).'_____';
     }
-    
+
     public static function convertToInt($var)
     {
         return (int)$var;
