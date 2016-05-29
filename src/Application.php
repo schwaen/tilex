@@ -10,6 +10,8 @@ use Symfony\Component\Console\Command\Command;
 
 class Application extends \Silex\Application
 {
+    const VERSION = '0.1.0-dev';
+
     public function __construct(array $values = array())
     {
         $services = [];
@@ -19,9 +21,12 @@ class Application extends \Silex\Application
         }
 
         parent::__construct($values);
-
-        $this['app.name'] = 'Tilex';
-        $this['app.version'] = '0.1.0-dev';
+        if (!isset($this['app.name'])) {
+            $this['app.name'] = 'Tilex';
+        }
+        if (!isset($this['app.version'])) {
+            $this['app.version'] = self::VERSION;
+        }
 
         $this->register(new CliServiceProvider());
         $this->cli(new HttpCommand());
