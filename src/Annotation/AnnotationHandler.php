@@ -20,7 +20,7 @@ class AnnotationHandler
         $this->reader = new AnnotationReader();
         $this->dirs = $dirs;
     }
-    
+
     function handle()
     {
         $classes = $this->listClasses($this->dirs);
@@ -29,7 +29,7 @@ class AnnotationHandler
             $class_annotations = $this->reader->getClassAnnotations($rc);
             foreach ($class_annotations as $c_annotation) {
                 if($c_annotation instanceof AnnotationClassProcessInterface) {
-                    $c_annotation->process($this->app);
+                    $c_annotation->process($this->app, $rc);
                 }
             }
             $methods = $rc->getMethods();
