@@ -10,8 +10,12 @@ use Symfony\Component\Console\Command\Command;
 
 class Application extends \Silex\Application
 {
+    /** var string */
     const VERSION = '0.1.0-dev';
 
+    /**
+     * @param array $values
+     */
     public function __construct(array $values = array())
     {
         $services = [];
@@ -35,16 +39,28 @@ class Application extends \Silex\Application
         }
     }
 
+    /**
+     * Register a cli command
+     * @param Command $command
+     */
     public function cli(Command $command)
     {
         $this['cli']->add($command);
     }
 
+    /**
+     * Returns true if the app is executed by the cli
+     * @return boolean
+     */
     public function isCli()
     {
         return php_sapi_name() === 'cli';
     }
 
+    /**
+     * (non-PHPdoc)
+     * @see \Silex\Application::run()
+     */
     public function run(Request $request = null)
     {
         if ($this->isCli()) {
@@ -55,4 +71,3 @@ class Application extends \Silex\Application
         }
     }
 }
-

@@ -5,6 +5,9 @@ use Silex\Application;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Tilex\Annotation\AnnotationClassProcessInterface;
 
+/**
+ * AnnotationHandler
+ */
 class AnnotationHandler
 {
     /** @var Application */
@@ -14,6 +17,11 @@ class AnnotationHandler
     /** @var string[] */
     protected $dirs = [];
 
+    /**
+     * Constructor
+     * @param Application $app
+     * @param array $dirs
+     */
     public function __construct(Application $app, array $dirs = [])
     {
         $this->app = $app;
@@ -21,6 +29,9 @@ class AnnotationHandler
         $this->dirs = $dirs;
     }
 
+    /**
+     * Handle the annotations and processes
+     */
     function handle()
     {
         $classes = $this->listClasses($this->dirs);
@@ -44,6 +55,11 @@ class AnnotationHandler
         }
     }
 
+    /**
+     * Lists PHP classes in $dirs and subdirectorys
+     * @param array $dirs
+     * @return multitype:string
+     */
     public function listClasses(array $dirs)
     {
         $classes = [];
@@ -58,6 +74,11 @@ class AnnotationHandler
         return $classes;
     }
 
+    /**
+     * Find PHP classes in a File
+     * @param string $path
+     * @return multitype:string
+     */
     private function findClassesInFile($path)
     {
         $content = file_get_contents($path);
