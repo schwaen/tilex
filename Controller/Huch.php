@@ -2,6 +2,9 @@
 namespace Controller;
 
 /**
+ * @Tilex\Annotation\Annotations\Routing\Controller(
+ *     prefix="/Huch"
+ * )
  */
 class Huch
 {

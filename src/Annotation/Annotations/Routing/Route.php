@@ -5,6 +5,7 @@ use Tilex\Annotation\AnnotationMethodProcessInterface;
 use Tilex\Annotation\Annotations\Routing\Assert;
 use Tilex\Annotation\Annotations\Routing\Convert;
 use Tilex\Annotation\Annotations\Routing\Value;
+use Tilex\Annotation\Annotations\Routing\Controller;
 use Silex\Application;
 
 /**
@@ -58,8 +59,15 @@ class Route implements AnnotationMethodProcessInterface
 
     public function process(Application $app, \ReflectionMethod $method, array $class_annotations = [])
     {
+        $context = $app;
+        foreach ($class_annotations as $c_annotation) {
+            if($c_annotation instanceof Controller){
+                $context = $c_annotation->controller_collection;
+                break;
+            }
+        }
         /** @var \Silex\Controller */
-        $controller = $app->match($this->uri, $method->class.'::'.$method->name)->method($this->method);
+        $controller = $context->match($this->uri, $method->class.'::'.$method->name)->method($this->method);
         if ($this->requireHttp) {
             $controller->requireHttp();
         }
