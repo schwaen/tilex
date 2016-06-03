@@ -14,5 +14,12 @@ $app = new \Tilex\Application([
 $app->get('/', function() use($app) {
     return 'index';
 });
+$app->match('/test/cors', function() use ($app) {
+    return $app->json([['greet'=>'World']]);
+})->method('POST|PUT');
+
+$app->get('/test_get', function() use ($app) {
+    return __METHOD__;
+});
 
 $app->run();

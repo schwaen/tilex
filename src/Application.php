@@ -1,14 +1,15 @@
 <?php
 namespace Tilex;
 
-use Tilex\Provider\AnnotationServiceProvider;
+use Silex\Application as BaseApplication;
+use Tilex\Provider\CorsServiceProvider;
 use Tilex\Provider\CliServiceProvider;
 use Tilex\Console\Command\HttpCommand;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Console\Command\Command;
 
 
-class Application extends \Silex\Application
+class Application extends BaseApplication
 {
     /** var string */
     const VERSION = '0.1.0-dev';
@@ -23,8 +24,10 @@ class Application extends \Silex\Application
             $services = $values['servies'];
             unset($values['servies']);
         }
-
+        $values['route_class'] = '\\Tilex\\Route';
+        
         parent::__construct($values);
+        $app = $this;
         if (!isset($this['app.name'])) {
             $this['app.name'] = 'Tilex';
         }
@@ -32,6 +35,14 @@ class Application extends \Silex\Application
             $this['app.version'] = self::VERSION;
         }
 
+         $this->extend('route_factory', function($route_factory) use ($app) {
+             if ($route_factory instanceof Route) {
+                  $route_factory->setContainer($app);
+             }
+             return $route_factory;
+         });
+
+        $this->register(new CorsServiceProvider());
         $this->register(new CliServiceProvider());
         $this->cli(new HttpCommand());
         foreach ($services as $service => $services_values) {
