@@ -9,12 +9,12 @@ class Route extends BaseRoute
      * @var Tilex\Application;
      */
     protected $app = null;
-    
+
     public function setContainer(Application $app)
     {
         $this->app = $app;
     }
-    
+
     /**
      * Sets the HTTP methods (e.g. 'POST') this route is restricted to.
      * So an empty array means that any method is allowed.
@@ -27,16 +27,18 @@ class Route extends BaseRoute
      */
     public function setMethods($methods)
     {
-        $methods = array_map('strtoupper', (array) $methods);
-        $methods_allowed = false;
-        foreach ($methods as $method) {
-            if ($this->app['cors']->checkMethod($method)) {
-                $methods_allowed = true;
-                break;
+        if (isset($this->app['cors'])) {
+            $methods = array_map('strtoupper', (array) $methods);
+            $methods_allowed = false;
+            foreach ($methods as $method) {
+                if ($this->app['cors']->checkMethod($method)) {
+                    $methods_allowed = true;
+                    break;
+                }
             }
-        }
-        if (!in_array('OPTIONS', $methods) && $methods_allowed) {
-            $methods[] = 'OPTIONS';
+            if (!in_array('OPTIONS', $methods) && $methods_allowed) {
+                $methods[] = 'OPTIONS';
+            }
         }
         parent::setMethods($methods);
         return $this;

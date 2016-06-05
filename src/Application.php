@@ -25,7 +25,7 @@ class Application extends BaseApplication
             unset($values['servies']);
         }
         $values['route_class'] = '\\Tilex\\Route';
-        
+
         parent::__construct($values);
         $app = $this;
         if (!isset($this['app.name'])) {
@@ -42,7 +42,6 @@ class Application extends BaseApplication
              return $route_factory;
          });
 
-        $this->register(new CorsServiceProvider());
         $this->register(new CliServiceProvider());
         $this->cli(new HttpCommand());
         foreach ($services as $service => $services_values) {
