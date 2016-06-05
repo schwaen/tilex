@@ -7,7 +7,8 @@ $app = new \Tilex\Application([
     'servies' => [
         'Tilex\\Provider\\AnnotationServiceProvider' => [
             'annotation.dirs' => [__DIR__.'/Controller']
-        ]
+        ],
+        'Tilex\\Provider\\CorsServiceProvider' => []
     ]
 ]);
 
