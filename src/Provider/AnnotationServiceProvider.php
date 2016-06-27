@@ -23,8 +23,11 @@ class AnnotationServiceProvider implements ServiceProviderInterface, BootablePro
         if (!isset($app['annotation.dirs'])) {
             $app['annotation.dirs'] = [];
         }
+        if (!isset($app['annotation.cache'])) {
+            $app['annotation.cache'] = null;
+        }
         $app['annotation'] = function ($app) {
-            return new AnnotationHandler($app, $app['annotation.dirs']);
+            return new AnnotationHandler($app, $app['annotation.dirs'], $app['annotation.cache']);
         };
         AnnotationRegistry::registerLoader(function ($class) { return class_exists($class); });
     }
